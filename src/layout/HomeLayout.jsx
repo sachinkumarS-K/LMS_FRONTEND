@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/AuthSlice";
 const HomeLayout = ({ children }) => {
   function changWidth() {
     const drawerSider = document.querySelector(".drawer-side");
@@ -77,16 +78,16 @@ const HomeLayout = ({ children }) => {
                     <Link to="/login"> Login</Link>
                   </button>
                   <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center">
-                    <Link to="/login"> Sign Up</Link>
+                    <Link to="/register"> Sign Up</Link>
                   </button>
                 </div>
               </div>
             )}
             {isLoggedIn && (
-              <li className="  ">
-                <div className="w-full  flex items-center justify-around">
+              <div className=" absolute bottom-16 w-full ">
+                <div className="w-9/12 mx-auto space-x-4">
                   <button
-                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded-lg inline-flex
                  items-center"
                   >
                     <Link to="/login"> Profile</Link>
@@ -98,7 +99,7 @@ const HomeLayout = ({ children }) => {
                     Logout
                   </button>
                 </div>
-              </li>
+              </div>
             )}
           </ul>
         </div>

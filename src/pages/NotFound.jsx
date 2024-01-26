@@ -1,23 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { FaArrowLeft } from "react-icons/fa";
+import pageNotFound from "../assets/images/pageNotFound.jpg";
 const NotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">
-      <h1 className="text-9xl font-extrabold tracking-widest text-white">
+    <div className="h-screen relative w-full flex flex-col justify-center items-center bg-[#1A2238]">
+      {/* <h1 className="text-9xl font-extrabold tracking-widest text-white">
         404
       </h1>
       <div className="bg-slate-800 px-4 rounded-lg text-white text-lg   rotate-12 absolute ">
         Page Not Found
-      </div>
-      <button className="mt-5">
+      </div> */}
+      <img
+        className="bg-cover  w-full h-full"
+        src={pageNotFound}
+        alt="pageNotFound"
+      />
+      <button className="mt-5 absolute top-10 left-20">
         <div
           onClick={() => navigate(-1)}
-          className="relative text-sm font-medium text-[#FF6A3D] group active:text-yellow-500 focus:outline-none focus:ring "
+          className="relative text-sm font-medium transition-all duration-500 ease-in-out hover:text-[#FF6A3D]"
         >
-          <span className="relative block px-8 py-3 bg-[#1A2238] rounded-lg border border-current ">
-            Go Back
-          </span>
+          <FaArrowLeft className="text-5xl" />
         </div>
       </button>
     </div>
