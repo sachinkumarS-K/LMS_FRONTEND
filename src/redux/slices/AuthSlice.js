@@ -4,9 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
   role: localStorage.getItem("role") || "",
-  data: localStorage.getItem("data")
-    ? JSON.parse(localStorage.getItem("data"))
-    : {},
+  data: localStorage.getItem("data") || "",
 };
 
 export const createAccount = createAsyncThunk(
@@ -65,12 +63,14 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action.payload?.user));
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("role", action.payload?.user.role);
-        state.isLoggedIn = true;
-        state.data = action.payload?.user;
-        state.role = action.payload?.user.role;
+        if (action.payload) {
+          localStorage.setItem("data", JSON.stringify(action.payload.user));
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action.payload.user.role);
+          state.isLoggedIn = true;
+          state.data = action.payload.user;
+          state.role = action.payload.user.role;
+        }
       })
       .addCase(createAccount.fulfilled, (state, action) => {
         localStorage.setItem("data", JSON.stringify(action.payload?.user));

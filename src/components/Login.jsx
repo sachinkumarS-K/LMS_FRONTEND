@@ -12,7 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    fullName: "",
     email: "",
     password: "",
   });

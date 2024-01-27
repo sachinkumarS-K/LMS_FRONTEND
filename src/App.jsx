@@ -9,22 +9,24 @@ import CourseList from "./pages/Course/CourseList";
 import Contact from "./pages/Course/Contact";
 import Denied from "./pages/Denied";
 import CourseDescription from "./pages/Course/CourseDescription";
+import RequireAuth from "./components/Auth/RequireAuth";
+import CreateCourse from "./pages/CreateCourse";
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/about" element={<AboutUsPage />}></Route>
-        <Route path="/register" element={<Signup />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/courses" element={<CourseList />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/denied" element={<Denied />}></Route>
-        <Route
-          path="/course/description"
-          element={<CourseDescription />}
-        ></Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/register" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/courses" element={<CourseList />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/denied" element={<Denied />} />
 
+        <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
+          <Route path="/course/create" element={<CreateCourse />} />
+        </Route>
+        <Route path="/course/description" element={<CourseDescription />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -9,7 +9,7 @@ const CourseDescription = () => {
   return (
     <HomeLayout>
       <div className="min-h-[90vh] pt-12 px-20 flex-col flex items-center justify-center text-white ">
-        <div className=" w-10/12 mx-auto grid grid-cols-2 gap-10 relative py-7">
+        <div className=" w-10/12 mx-auto grid grid-cols-2 gap-16 relative py-7">
           <div className="space-y-5 ">
             <img
               src={state?.thumbnail?.secure_url}
@@ -34,11 +34,11 @@ const CourseDescription = () => {
                 </p>
               </div>
               {role === "ADMIN" || data?.subscription?.status === "ACTIVE" ? (
-                <button className="bg-yellow-600 text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                <button className="bg-yellow-600 tracking-wider text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
                   Watch lectures
                 </button>
               ) : (
-                <button className="bg-yellow-600 text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                <button className="bg-yellow-600 tracking-wider text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
                   Subscribe
                 </button>
               )}

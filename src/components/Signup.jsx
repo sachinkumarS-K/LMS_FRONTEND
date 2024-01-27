@@ -30,7 +30,7 @@ const Signup = () => {
   function getImage(e) {
     e.preventDefault();
     const uploadedImage = e.target.files[0];
-    console.log(uploadedImage);
+
     if (uploadedImage) {
       setFormData({
         ...formData,
