@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { createAccount, login } from "../redux/slices/AuthSlice";
+import { isEmail } from "../utils/regexMatcher";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
@@ -33,11 +34,7 @@ const Login = () => {
       return;
     }
 
-    if (
-      !email.match(
-        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-      )
-    ) {
+    if (!isEmail(email)) {
       toast.error("Email is invalid !");
       return;
     }
@@ -46,7 +43,6 @@ const Login = () => {
 
     setFormData({
       email: "",
-
       password: "",
     });
 

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../redux/slices/AuthSlice";
+import { checkPassword, isEmail } from "../utils/regexMatcher";
 const Signup = () => {
   const [img, setImg] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -57,18 +58,12 @@ const Signup = () => {
       toast.error("Name should be atleast 5 characters");
       return;
     }
-    if (
-      !email.match(
-        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-      )
-    ) {
+    if (!isEmail(email)) {
       toast.error("Email is invalid !");
       return;
     }
 
-    if (
-      !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/)
-    ) {
+    if (!checkPassword(password)) {
       toast.error("Password is invalid");
       setShowPasswordError(!showPasswordError);
       return;
