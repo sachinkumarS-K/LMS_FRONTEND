@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/AuthSlice";
+import img from "../assets/images/Untitled1.png";
 const HomeLayout = ({ children }) => {
   function changWidth() {
     const drawerSider = document.querySelector(".drawer-side");
@@ -90,7 +91,7 @@ const HomeLayout = ({ children }) => {
                     className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded-lg inline-flex
                  items-center"
                   >
-                    <Link to="/login"> Profile</Link>
+                    <Link to="/user/profile"> Profile</Link>
                   </button>
                   <button
                     onClick={handleLogout}
@@ -104,6 +105,7 @@ const HomeLayout = ({ children }) => {
           </ul>
         </div>
       </div>
+
       {children}
       <Footer />
     </div>

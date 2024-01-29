@@ -4,7 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
   role: localStorage.getItem("role") || "",
-  data: localStorage.getItem("data") || "",
+  data: JSON.parse(localStorage.getItem("data")) || "",
 };
 
 export const createAccount = createAsyncThunk(
@@ -40,6 +40,24 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
     toast.error(error?.response?.data?.message);
   }
 });
+export const updateProfile = createAsyncThunk(
+  "/user/update/profile",
+  async (data) => {
+    try {
+      const res = axiosInstance.put("user/update", data);
+      toast.promise(res, {
+        loading: "wait update in progress !",
+        success: (data) => {
+          return data?.data?.message;
+        },
+        error: "Failed to update Profile",
+      });
+      return (await res).data;
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  }
+);
 export const logout = createAsyncThunk("/auth/logout", async (data) => {
   try {
     const res = axiosInstance.get("user/logout");
@@ -56,10 +74,31 @@ export const logout = createAsyncThunk("/auth/logout", async (data) => {
   }
 });
 
+export const contactUs = createAsyncThunk("/auth/contact", async (data) => {
+  try {
+    const res = axiosInstance.post("/contact", data);
+    toast.promise(res, {
+      loading: "wait task in progress !",
+      success: (data) => {
+        return data?.data?.message;
+      },
+      error: "Failed to send message ",
+    });
+    return (await res).data;
+  } catch (error) {
+    toast.error(error?.response?.data?.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    updataData: (state, action) => {
+      state.data = action.payload;
+      localStorage.setItem("data", JSON.stringify(action.payload));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
@@ -73,12 +112,24 @@ const authSlice = createSlice({
         }
       })
       .addCase(createAccount.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action.payload?.user));
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("role", action.payload?.user.role);
-        state.isLoggedIn = true;
-        state.data = action.payload?.user;
-        state.role = action.payload?.user.role;
+        if (action.payload) {
+          localStorage.setItem("data", JSON.stringify(action.payload?.user));
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action.payload?.user.role);
+          state.isLoggedIn = true;
+          state.data = action.payload?.user;
+          state.role = action.payload?.user.role;
+        }
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        if (action.payload) {
+          localStorage.setItem("data", JSON.stringify(action.payload?.user));
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action.payload?.user.role);
+          state.isLoggedIn = true;
+          state.data = action.payload?.user;
+          state.role = action.payload?.user.role;
+        }
       })
       .addCase(logout.fulfilled, (state) => {
         localStorage.clear();
@@ -89,6 +140,6 @@ const authSlice = createSlice({
   },
 });
 
-export const {} = authSlice.actions;
+export const { updataData } = authSlice.actions;
 
 export default authSlice.reducer;

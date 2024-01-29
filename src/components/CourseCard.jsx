@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const CourseCard = ({ data }) => {
   const navigate = useNavigate();
   return (
-    <div className="text-white w-[22rem] h-[430px] shadow-lg cursor-pointer group overflow-hidden ">
+    <div className="text-white shadow-[4px_3px_5px_#000] w-[22rem] h-[430px]  cursor-pointer group overflow-hidden ">
       <div
         className="overflow-hidden"
         onClick={() => navigate("/course/description", { state: { ...data } })}

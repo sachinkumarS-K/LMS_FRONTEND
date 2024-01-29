@@ -11,6 +11,7 @@ const Signup = () => {
   const [img, setImg] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
+  const [showImgError, setShowImgError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -50,8 +51,12 @@ const Signup = () => {
     e.preventDefault();
     const { email, password, fullName, avatar } = formData;
 
-    if (!email || !password || !fullName || !avatar) {
+    if (!email || !password || !fullName) {
       toast.error("Please fill all the fields");
+      return;
+    }
+    if (!avatar) {
+      setShowImgError(!showImgError);
       return;
     }
     if (fullName.length < 5) {
@@ -98,19 +103,28 @@ const Signup = () => {
             <h1 className="text-center text-2xl font-bold">
               Registration Page
             </h1>
-            <label htmlFor="imgUpload">
+            <label htmlFor="imgUpload" className="relative">
               {img ? (
                 <img className="w-28 h-24 rounded-full m-auto" src={img} />
               ) : (
                 <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />
               )}
+              {showImgError && (
+                <p className="absolute top-2 right-0 text-red-500">
+                  *Select an image
+                </p>
+              )}
             </label>
+
             <input
               type="file"
               className="hidden"
               accept=".jpg, .jpeg,.png,.svg"
               name="avatar"
-              onChange={getImage}
+              onChange={(e) => {
+                getImage(e);
+                showImgError && setShowImgError(!showImgError);
+              }}
               id="imgUpload"
             />
             <div className="flex flex-col gap-1">

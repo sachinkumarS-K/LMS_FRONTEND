@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { createNewCourse } from "../redux/slices/CourseSlice";
-import HomeLayout from "../layout/HomeLayout";
+import { createNewCourse } from "../../redux/slices/CourseSlice";
+import HomeLayout from "../../layout/HomeLayout";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const CreateCourse = () => {

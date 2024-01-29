@@ -20,14 +20,17 @@ const CourseList = () => {
   return (
     <div>
       <HomeLayout>
-        <div className="min-h-[90vh] pt-12 pl-20 flex flex-col gap-10 text-white ">
+        <div className="min-h-[90vh] w-full pt-12 flex flex-col gap-10 text-white ">
           <h1 className="text-center text-3xl font-semibold ">
             Explore the courses made by
             <span className="font-bold text-yellow-500 px-2">
               Industry experts
             </span>
           </h1>
-          <div className="w-[85%] mx-auto flex flex-wrap  gap-10">
+          <div
+            className="w-full   mx-auto flex items-center
+           justify-center flex-wrap  gap-10"
+          >
             {courseData.map((course) => (
               <CourseCard key={course._id} data={course} />
             ))}

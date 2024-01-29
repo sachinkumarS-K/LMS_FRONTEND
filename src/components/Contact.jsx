@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import HomeLayout from "../../layout/HomeLayout";
+import HomeLayout from "../layout/HomeLayout";
 import toast from "react-hot-toast";
-import { isEmail } from "../../utils/regexMatcher";
-import axiosInstance from "../../utils/axiosInstance";
+import { isEmail } from "../utils/regexMatcher";
+import axiosInstance from "../utils/axiosInstance";
+import { useDispatch } from "react-redux";
+import { contactUs } from "../redux/slices/AuthSlice";
 
 const Contact = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,9 +34,15 @@ const Contact = () => {
       return;
     }
 
-    try {
-      const res = axiosInstance.post;
-    } catch (error) {}
+    const res = await dispatch(contactUs(formData));
+    console.log(res);
+    if (res?.payload?.success) {
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+    }
   }
 
   return (
@@ -95,7 +104,7 @@ const Contact = () => {
               onChange={onChangeHandler}
             />
           </div>
-          <button className="bg-yellow-600 mt-2 hover:bg-yellow-500 w-full px-5 transition-all ease-in-out rounded-lg py-2 font-semibold text-lg  ">
+          <button className="bg-yellow-600 mt-2 hover:bg-yellow-500 duration-300 w-full px-5 transition-all ease-in-out rounded-lg py-2 font-semibold text-lg  ">
             Submit
           </button>
         </form>
