@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/AuthSlice";
 import img from "../assets/images/Untitled1.png";
+import Navbar from "../components/Navbar";
 const HomeLayout = ({ children }) => {
   function changWidth() {
     const drawerSider = document.querySelector(".drawer-side");
@@ -39,7 +40,7 @@ const HomeLayout = ({ children }) => {
             />
           </label>
         </div>
-        <div className="drawer-side w-0">
+        <div className="drawer-side w-0 ">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"

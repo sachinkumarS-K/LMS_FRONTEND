@@ -90,6 +90,14 @@ export const contactUs = createAsyncThunk("/auth/contact", async (data) => {
   }
 });
 
+export const getUserData = createAsyncThunk("/auth/getUserData", async () => {
+  try {
+    const res = await axiosInstance.getUserData("user/me");
+  } catch (error) {
+    toast.error(error?.response?.data?.message);
+  }
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -129,6 +137,12 @@ const authSlice = createSlice({
           state.isLoggedIn = true;
           state.data = action.payload?.user;
           state.role = action.payload?.user.role;
+        }
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        if (action.payload) {
+          localStorage.setItem("data", JSON.stringify(action.payload?.user));
+          state.data = action.payload?.user;
         }
       })
       .addCase(logout.fulfilled, (state) => {

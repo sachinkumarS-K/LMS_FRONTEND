@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
-    <div className="w-screen">
+    <div className="w-screen min-h-screen ">
       <HomeLayout>
         <div className="pt-10 text-white flex lg:flex-row  flex-col-reverse  items-center justify-center gap-10 mx-16 min-h-[90vh]">
           <div className="lg:w-1/2 w-full lg:space-y-6">
