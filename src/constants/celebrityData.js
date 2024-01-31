@@ -1,8 +1,8 @@
-import apj from "../Assets/Images/apj.png";
-import billGates from "../Assets/Images/billGates.png";
-import einstein from "../Assets/Images/einstein.png";
-import nelsonMandela from "../Assets/Images/nelsonMandela.png";
-import steveJobs from "../Assets/Images/steveJobs.png";
+import apj from "../assets/images/apj.png";
+import bill from "../assets/images/billGates.png";
+import einstein from "../assets/images/einstein.png";
+import nelsonMandela from "../assets/images/nelsonMandela.png";
+import steveJobs from "../assets/images/steveJobs.png";
 
 export const celebrities = [
   {
@@ -32,6 +32,6 @@ export const celebrities = [
     title: "Bill Gates",
     description:
       "Success is a lousy teacher. It seduces smart people into thinking they can’t lose.",
-    image: billGates,
+    image: bill,
   },
 ];
