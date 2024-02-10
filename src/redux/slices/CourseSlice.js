@@ -56,4 +56,5 @@ const coureseSlice = createSlice({
     });
   },
 });
+
 export default coureseSlice.reducer;

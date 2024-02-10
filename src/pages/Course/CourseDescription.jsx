@@ -9,18 +9,18 @@ const CourseDescription = () => {
   const { role, data } = useSelector((state) => state.auth);
   return (
     <HomeLayout>
-      <div className="min-h-[90vh] pt-12 px-20 flex-col flex   items-center justify-center text-white ">
+      <div className="min-h-[90vh] pt-12 px-20 flex-col flex   items-center justify-center  ">
         <div className="  md:w-10/12 w-full mx-auto grid md:grid-cols-2 gap-16 relative py-7">
           <div className="space-y-5 ">
             <img
               src={state?.thumbnail?.secure_url}
-              className="w-full h-64"
+              className="w-full min-h-64 max-h-72 rounded-xl object-cover"
               alt="course thumbnail"
             />
             <div className="space-y-4">
               <div className="flex flex-col items-center justify-between text-xl ">
                 <p className="font-semibold ">
-                  <span className="to-yellow-500 font-bold px-2">
+                  <span className="text-yellow-500 font-bold px-2">
                     {" "}
                     Total Lectures :
                   </span>
@@ -35,7 +35,12 @@ const CourseDescription = () => {
                 </p>
               </div>
               {role === "ADMIN" || data?.subscription?.status === "ACTIVE" ? (
-                <button className="bg-yellow-600 tracking-wider text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300">
+                <button
+                  onClick={() =>
+                    navigate("/course/displaylecture", { state: { ...state } })
+                  }
+                  className="bg-yellow-600 tracking-wider text-xl rounded-xl px-5 py-3 w-full hover:bg-yellow-500 transition-all ease-in-out duration-300"
+                >
                   Watch lectures
                 </button>
               ) : (
