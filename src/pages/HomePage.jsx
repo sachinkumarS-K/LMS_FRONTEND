@@ -28,7 +28,7 @@ const HomePage = () => {
                 <button
                   data-aos="flip-left"
                   data-aos-delay="50"
-                  className="bg-yellow-500 px-5 py-3 text-white rounded-xl text-lg font-semibold cursor-pointer hover:bg-white hover:text-yellow-500 hover:border hover:border-2 transition-all duration-300"
+                  className="bg-yellow-500 px-5 py-3 text-white rounded-xl text-lg font-semibold cursor-pointer hover:bg-white hover:text-yellow-500  hover:border-2 transition-all duration-300"
                 >
                   Explore Courses
                 </button>
